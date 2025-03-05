@@ -97,7 +97,7 @@ void mju_writeLog(const char* type, const char* msg) {
     // get time
     time(&rawtime);
 
-#if defined(_POSIX_C_SOURCE) || defined(__APPLE__) || defined(__STDC_VERSION_TIME_H__)
+#if defined(_POSIX_C_SOURCE) || defined(__APPLE__) || defined(__STDC_VERSION_TIME_H__) || defined(__ANDROID__)
     localtime_r(&rawtime, &timeinfo);
 #elif _MSC_VER
     localtime_s(&timeinfo, &rawtime);
@@ -126,7 +126,7 @@ void mju_error_raw(const char* msg) {
     printf("ERROR: %s\n\nPress Enter to exit ...", msg);
 
     // pause, exit
-    getchar();
+    (void)getchar();
     exit(EXIT_FAILURE);
   }
 }
